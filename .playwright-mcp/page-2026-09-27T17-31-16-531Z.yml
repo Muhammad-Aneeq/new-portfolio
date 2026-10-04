@@ -1,0 +1,228 @@
+- generic [active] [ref=f19e1]:
+  - banner [ref=f19e2]:
+    - navigation [ref=f19e3]:
+      - link "MH." [ref=f19e4] [cursor=pointer]:
+        - /url: "#hero"
+      - list [ref=f19e5]:
+        - listitem [ref=f19e6]:
+          - link "About" [ref=f19e7] [cursor=pointer]:
+            - /url: "#about"
+        - listitem [ref=f19e8]:
+          - link "Skills" [ref=f19e9] [cursor=pointer]:
+            - /url: "#skills"
+        - listitem [ref=f19e10]:
+          - link "Experience" [ref=f19e11] [cursor=pointer]:
+            - /url: "#experience"
+        - listitem [ref=f19e12]:
+          - link "Projects" [ref=f19e13] [cursor=pointer]:
+            - /url: "#projects"
+        - listitem [ref=f19e14]:
+          - link "Contact" [ref=f19e15] [cursor=pointer]:
+            - /url: "#contact"
+  - generic [ref=f19e17]:
+    - generic [ref=f19e18]:
+      - paragraph [ref=f19e19]: Open to work
+      - generic [ref=f19e21]:
+        - img "Muhammad Hammmad" [ref=f19e23]
+        - generic [ref=f19e24]:
+          - heading "Muhammad Hammmad" [level=1] [ref=f19e25]:
+            - generic [ref=f19e26]:
+              - generic [ref=f19e27]: Muhammad
+              - generic [ref=f19e29]: Hammmad
+          - paragraph [ref=f19e31]: Associate Software Engineer
+      - paragraph [ref=f19e32]: I build chatbots that actually answer. Two years shipping them for e-commerce, healthcare and FinTech teams.
+      - generic [ref=f19e33]:
+        - link "See the work" [ref=f19e34] [cursor=pointer]:
+          - /url: "#projects"
+        - link "Email me" [ref=f19e35] [cursor=pointer]:
+          - /url: "#contact"
+    - generic [ref=f19e36]:
+      - generic [ref=f19e37]:
+        - generic [ref=f19e38]: gpt-4o
+        - generic [ref=f19e39]: /
+        - generic [ref=f19e40]: 312 tokens
+        - generic [ref=f19e41]: /
+        - generic [ref=f19e42]: 1.4s
+      - generic [ref=f19e43]:
+        - paragraph [ref=f19e44]: Which stack would you use for a RAG support bot?
+        - paragraph [ref=f19e45]
+  - generic [ref=f19e48]:
+    - generic [ref=f19e49]:
+      - heading "About" [level=2] [ref=f19e50]
+      - paragraph [ref=f19e51]: Who you would be working with.
+    - generic [ref=f19e52]:
+      - generic [ref=f19e53]:
+        - paragraph [ref=f19e54]:
+          - text: I'm
+          - strong [ref=f19e55]: Muhammad Hammmad
+          - text: ", an Associate Software Engineer with"
+          - strong [ref=f19e56]: 2 years of professional experience
+          - text: in software engineering and full stack development.
+        - paragraph [ref=f19e57]:
+          - text: I specialize in
+          - strong [ref=f19e58]: Generative AI and chatbot development
+          - text: ", building intelligent applications with technologies like OpenAI GPT, LangChain, and Dialogflow, paired with modern web stacks like React, Next.js, and Node.js."
+        - paragraph [ref=f19e59]:
+          - text: My educational background is
+          - strong [ref=f19e60]: Intermediate
+          - text: ", and I've complemented it with continuous self-learning, hands-on projects, and on-job experience to grow as an engineer every day."
+      - generic [ref=f19e61]:
+        - generic [ref=f19e62]: ✓ 2 Years Experience
+        - generic [ref=f19e63]: ✓ Full Stack Development
+        - generic [ref=f19e64]: ✓ Generative AI & Chatbots
+        - generic [ref=f19e65]: ✓ Team Player
+        - generic [ref=f19e66]: ✓ Quick Learner
+        - generic [ref=f19e67]: ✓ Problem Solver
+  - generic [ref=f19e70]:
+    - generic [ref=f19e71]:
+      - heading "Skills" [level=2] [ref=f19e72]
+      - paragraph [ref=f19e73]: Grouped by what they are, not by how new they are.
+    - generic [ref=f19e75]:
+      - generic [ref=f19e76]:
+        - paragraph [ref=f19e77]: Languages
+        - list [ref=f19e78]:
+          - listitem [ref=f19e79]: TypeScript
+          - listitem [ref=f19e80]: JavaScript
+          - listitem [ref=f19e81]: Python
+          - listitem [ref=f19e82]: SQL
+      - generic [ref=f19e83]:
+        - paragraph [ref=f19e84]: Frontend
+        - list [ref=f19e85]:
+          - listitem [ref=f19e86]: React
+          - listitem [ref=f19e87]: Next.js
+      - generic [ref=f19e88]:
+        - paragraph [ref=f19e89]: AI & backend
+        - list [ref=f19e90]:
+          - listitem [ref=f19e91]: OpenAI GPT
+          - listitem [ref=f19e92]: LangChain
+          - listitem [ref=f19e93]: Dialogflow
+          - listitem [ref=f19e94]: Node.js
+          - listitem [ref=f19e95]: REST APIs
+      - generic [ref=f19e96]:
+        - paragraph [ref=f19e97]: Tooling
+        - list [ref=f19e98]:
+          - listitem [ref=f19e99]: Git & GitHub
+  - generic [ref=f19e102]:
+    - generic [ref=f19e103]:
+      - heading "Experience" [level=2] [ref=f19e104]
+      - paragraph [ref=f19e105]: Two years, one team, a lot of shipping.
+    - generic [ref=f19e110]:
+      - heading "Associate Software Engineer" [level=3] [ref=f19e111]
+      - paragraph [ref=f19e112]: Full-time · 2 Years
+      - generic [ref=f19e113]:
+        - paragraph [ref=f19e114]:
+          - text: Developed and maintained full stack features across multiple projects while specializing in
+          - strong [ref=f19e115]: Generative AI and chatbot solutions
+          - text: . Built intelligent conversational AI using OpenAI GPT, Dialogflow, and LangChain.
+        - paragraph [ref=f19e116]: Worked in agile teams, wrote clean code, fixed bugs, performed code reviews, and collaborated with designers and senior engineers to deliver quality products on schedule.
+  - generic [ref=f19e119]:
+    - generic [ref=f19e120]:
+      - heading "Projects" [level=2] [ref=f19e121]
+      - paragraph [ref=f19e122]: Three things I built end to end.
+    - generic [ref=f19e124]:
+      - article [ref=f19e125]:
+        - generic [ref=f19e126]: Conversational AI
+        - generic [ref=f19e128]:
+          - heading "AI Customer Support Chatbot" [level=3] [ref=f19e129]
+          - paragraph [ref=f19e130]: An intelligent customer service chatbot built with Dialogflow and OpenAI GPT to handle support queries for e-commerce and SaaS clients.
+          - generic [ref=f19e131]:
+            - generic [ref=f19e132]: OpenAI GPT
+            - generic [ref=f19e133]: Dialogflow
+            - generic [ref=f19e134]: Node.js
+          - generic [ref=f19e135]:
+            - link "Live demo" [ref=f19e136] [cursor=pointer]:
+              - /url: "#"
+            - link "Source" [ref=f19e137] [cursor=pointer]:
+              - /url: "#"
+      - article [ref=f19e138]:
+        - generic [ref=f19e139]: Full stack
+        - generic [ref=f19e141]:
+          - heading "E-Commerce Platform" [level=3] [ref=f19e142]
+          - paragraph [ref=f19e143]: A full-featured e-commerce web app with product catalog, cart, and payments, built on React and Node.js with a REST API backend.
+          - generic [ref=f19e144]:
+            - generic [ref=f19e145]: React
+            - generic [ref=f19e146]: Node.js
+            - generic [ref=f19e147]: REST API
+          - generic [ref=f19e148]:
+            - link "Live demo" [ref=f19e149] [cursor=pointer]:
+              - /url: "#"
+            - link "Source" [ref=f19e150] [cursor=pointer]:
+              - /url: "#"
+      - article [ref=f19e151]:
+        - generic [ref=f19e152]: LLM application
+        - generic [ref=f19e154]:
+          - heading "Generative AI Content App" [level=3] [ref=f19e155]
+          - paragraph [ref=f19e156]: An AI-powered content generation application using LangChain and OpenAI to produce text, summaries, and answers for enterprise users.
+          - generic [ref=f19e157]:
+            - generic [ref=f19e158]: Python
+            - generic [ref=f19e159]: LangChain
+            - generic [ref=f19e160]: OpenAI
+          - generic [ref=f19e161]:
+            - link "Live demo" [ref=f19e162] [cursor=pointer]:
+              - /url: "#"
+            - link "Source" [ref=f19e163] [cursor=pointer]:
+              - /url: "#"
+  - generic [ref=f19e166]:
+    - generic [ref=f19e167]:
+      - heading "Contact" [level=2] [ref=f19e168]
+      - paragraph [ref=f19e169]: The fastest way to reach me.
+    - generic [ref=f19e170]:
+      - paragraph [ref=f19e171]: Have a project in mind or want to collaborate? Send a note and I'll reply.
+      - generic [ref=f19e172]:
+        - link "Email your.email@example.com" [ref=f19e173] [cursor=pointer]:
+          - /url: mailto:your.email@example.com
+          - generic [ref=f19e174]: Email
+          - generic [ref=f19e175]: your.email@example.com
+        - link "GitHub github.com/yourusername" [ref=f19e176] [cursor=pointer]:
+          - /url: https://github.com/yourusername
+          - generic [ref=f19e177]: GitHub
+          - generic [ref=f19e178]: github.com/yourusername
+        - link "LinkedIn linkedin.com/in/yourusername" [ref=f19e179] [cursor=pointer]:
+          - /url: https://linkedin.com/in/yourusername
+          - generic [ref=f19e180]: LinkedIn
+          - generic [ref=f19e181]: linkedin.com/in/yourusername
+  - contentinfo [ref=f19e182]:
+    - paragraph [ref=f19e184]: © 2026 Muhammad Hammmad
+  - complementary [ref=f19e185]:
+    - button "Motion ▾" [expanded] [ref=f19e186] [cursor=pointer]:
+      - generic [ref=f19e187]: Motion
+      - generic [ref=f19e188]: ▾
+    - generic [ref=f19e189]:
+      - paragraph [ref=f19e190]: Toggle each system on the real page. Replay re-runs every entrance.
+      - generic [ref=f19e191]:
+        - button "▶ Replay entrances" [ref=f19e192] [cursor=pointer]
+        - button "All on" [ref=f19e193] [cursor=pointer]
+      - generic [ref=f19e194]:
+        - generic [ref=f19e195] [cursor=pointer]:
+          - generic [ref=f19e197]: Scroll reveal + stagger
+          - generic [ref=f19e198]: JS
+          - checkbox "Scroll reveal + stagger JS" [checked]
+        - generic [ref=f19e199] [cursor=pointer]:
+          - generic [ref=f19e201]: Hero name mask
+          - generic [ref=f19e202]: CSS
+          - checkbox "Hero name mask CSS" [checked]
+        - generic [ref=f19e203] [cursor=pointer]:
+          - generic [ref=f19e205]: Scroll progress rail
+          - generic [ref=f19e206]: CSS
+          - checkbox "Scroll progress rail CSS" [checked]
+        - generic [ref=f19e207] [cursor=pointer]:
+          - generic [ref=f19e209]: Timeline draw
+          - generic [ref=f19e210]: CSS
+          - checkbox "Timeline draw CSS" [checked]
+        - generic [ref=f19e211] [cursor=pointer]:
+          - generic [ref=f19e213]: Thumb settle
+          - generic [ref=f19e214]: CSS
+          - checkbox "Thumb settle CSS" [checked]
+        - generic [ref=f19e215] [cursor=pointer]:
+          - generic [ref=f19e217]: Card spotlight
+          - generic [ref=f19e218]: JS
+          - checkbox "Card spotlight JS" [checked]
+        - generic [ref=f19e219] [cursor=pointer]:
+          - generic [ref=f19e221]: Status dot pulse
+          - generic [ref=f19e222]: CSS
+          - checkbox "Status dot pulse CSS" [checked]
+      - generic [ref=f19e223]:
+        - link "← back to findings" [ref=f19e224] [cursor=pointer]:
+          - /url: index.html
+        - link "original site →" [ref=f19e225] [cursor=pointer]:
+          - /url: http://localhost:4173/index.html

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="data:," />
+<title>Motion Lab — candidate animations for the portfolio</title>
+<style>
+:root {
+  --surface: #121214;
+  --raised: #1a1a1d;
+  --raised-hover: #212126;
+  --line: #2a2a2e;
+  --ink: #ececee;
+  --ink-dim: #9c9ca3;
+  --accent: #5b8cff;
+  --accent-soft: #8fb0ff;
+  --on-accent: #0b0b0c;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --nav-h: 68px;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --font-mono: "Cascadia Code", Consolas, ui-monospace, "SF Mono", Menlo, monospace;
+
+  --motion-fast: 120ms;
+  --motion-base: 200ms;
+  --motion-medium: 280ms;
+  --motion-slow: 400ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emph: cubic-bezier(0.2, 0, 0, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--surface);
+  color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 120px;
+}
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: var(--radius-sm); }
+
+.wrap { width: min(1000px, 90%); margin: 0 auto; }
+
+.lab-head { padding: 76px 0 40px; border-bottom: 1px solid var(--line); }
+.lab-head h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.lab-head p { color: var(--ink-dim); max-width: 62ch; margin-top: 14px; }
+.lab-head a { color: var(--accent-soft); text-decoration: underline; text-underline-offset: 3px; }
+
+.bar {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(18,18,20,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding: 11px 0;
+  display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+  font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-dim);
+}
+.bar button {
+  font-family: var(--font-mono); font-size: 0.75rem;
+  background: var(--raised); color: var(--ink);
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: 6px 12px; cursor: pointer;
+  transition: background var(--motion-fast) var(--ease-soft), border-color var(--motion-fast) var(--ease-soft);
+}
+.bar button:hover { background: var(--raised-hover); border-color: var(--accent); }
+
+.demo { padding: 64px 0; border-bottom: 1px solid var(--line); }
+.demo-head { display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px; }
+.rank {
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--on-accent); background: var(--accent);
+  padding: 2px 9px; border-radius: 20px; flex: none;
+}
+.demo h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; letter-spacing: -0.01em; }
+.verdict { font-family: var(--font-mono); font-size: 0.6875rem; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--line); color: var(--ink-dim); }
+.verdict.ship { color: #7ee2a8; border-color: rgba(126,226,168,0.4); }
+.verdict.maybe { color: #ffd479; border-color: rgba(255,212,121,0.4); }
+.verdict.skip { color: #ff8f8f; border-color: rgba(255,143,143,0.4); }
+.demo-why { color: var(--ink-dim); font-size: 0.9375rem; max-width: 68ch; margin-bottom: 8px; }
+.demo-meta { font-family: var(--font-mono); font-size: 0.6875rem; color: #6f6f78; margin-bottom: 22px; }
+
+.stage {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--raised); overflow: hidden;
+}
+.stage-bar {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  padding: 9px 14px; border-bottom: 1px solid var(--line);
+  font-family: var(--font-mono); font-size: 0.6875rem; color: var(--ink-dim);
+  background: rgba(0,0,0,0.2);
+}
+.stage-bar button {
+  font-family: var(--font-mono); font-size: 0.6875rem;
+  background: none; border: 1px solid var(--line); color: var(--accent-soft);
+  border-radius: var(--radius-sm); padding: 4px 10px; cursor: pointer;
+}
+.stage-bar button:hover { border-color: var(--accent); }
+.canvas { padding: 30px 26px; min-height: 150px; }
+.canvas.tall { min-height: 260px; }
+
+pre {
+  border-top: 1px solid var(--line); background: #0e0e10;
+  padding: 16px 20px; overflow-x: auto;
+  font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.65; color: #b9c6e0;
+}
+pre .c { color: #5f6b80; }
+pre .p { color: #8fb0ff; }
+pre .v { color: #7ee2a8; }
+
+.note {
+  font-size: 0.8125rem; color: var(--ink-dim);
+  border-left: 2px solid var(--line); padding-left: 14px; margin-top: 16px; max-width: 68ch;
+}
+.note b { color: var(--ink); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="lab-head">
+    <h1>Motion Lab</h1>
+    <p>Every technique below runs live in this page. Each stage has a replay button so you can watch it again without scrolling back up. Findings from live sites are on the <a href="index.html">index page</a>. For the whole portfolio with these applied, open <a href="site-v2.html">site-v2</a>.</p>
+  </div>
+</div>
+
+<div class="bar">
+  <div class="wrap" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;width:min(1000px,90%)">
+    <button onclick="replayAll()">&#9654; Replay all time-based</button>
+    <button onclick="document.querySelectorAll('.stage').forEach(s=>s.scrollIntoView({block:'center',behavior:'smooth'}))">Jump through each</button>
+    <span style="margin-left:auto" id="supports"></span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 1. STAGGERED REVEAL -->
+  <section class="demo" id="d1">
+    <div class="demo-head">
+      <span class="rank">01</span>
+      <h2>Staggered scroll reveal</h2>
+      <span class="verdict ship">Ship this</span>
+    </div>
+    <p class="demo-why">The single biggest upgrade. Every section's children fade up 12px as they enter the viewport, 60ms apart. It gives the page a sense of order and pacing without moving anything permanently. One IntersectionObserver, ~15 lines, no library.</p>
+    <p class="demo-meta">12px amplitude &middot; 280ms &middot; ease-out &middot; 60ms stagger &middot; triggers once &middot; fires 12% early</p>
+    <div class="stage">
+      <div class="stage-bar"><span>Scroll the stage into view, or replay</span><button onclick="replay('d1')">&#9654; Replay</button></div>
+      <div class="canvas" data-reveal>
+        <div class="r-row" style="display:flex;gap:14px;flex-wrap:wrap">
+          <span class="r-item" style="border:1px solid var(--line);background:var(--surface);border-radius:var(--radius-sm);padding:10px 15px;font-family:var(--font-mono);font-size:0.75rem">TypeScript</span>
+          <span class="r-item" style="border:1px solid var(--line);background:var(--surface);border-radius:var(--radius-sm);padding:10px 15px;font-family:var(--font-mono);font-size:0.75rem">Python</span>
+          <span class="r-item" style="border:1px solid var(--line);background:var(--surface);border-radius:var(--radius-sm);padding:10px 15px;font-family:var(--font-mono);font-size:0.75rem">React</span>
+          <span class="r-item" style="border:1px solid var(--line);background:var(--surface);border-radius:var(--radius-sm);padding:10px 15px;font-family:var(--font-mono);font-size:0.75rem">LangChain</span>
+          <span class="r-item" style="border:1px solid var(--line);background:var(--surface);border-radius:var(--radius-sm);padding:10px 15px;font-family:var(--font-mono);font-size:0.75rem">Node.js</span>
+        </div>
+        <div class="r-item" style="border:1px solid var(--line);background:var(--surface);border-radius:var(--radius);padding:18px 20px;margin-top:14px">
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;font-weight:600">AI Customer Support Chatbot</h3>
+          <p style="color:var(--ink-dim);font-size:0.875rem;margin-top:4px">Second item, 60ms later than the first.</p>
+        </div>
+        <div class="r-item" style="border:1px solid var(--line);background:var(--surface);border-radius:var(--radius);padding:18px 20px;margin-top:14px">
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;font-weight:600">E-Commerce Platform</h3>
+          <p style="color:var(--ink-dim);font-size:0.875rem;margin-top:4px">Third item, 60ms after that.</p>
+        </div>
+      </div>
+    </div>
+    <p class="note"><b>Why 12px and not 20px.</b> 20px is the default everyone ships and it reads as a template. 8&ndash;12px is the range that reads as considered. Amplitude is the cheapest thing to tune and the most visible.</p>
+  </section>
+
+  <!-- 2. SPLIT HEADLINE -->
+  <section class="demo" id="d2">
+    <div class="demo-head">
+      <span class="rank">02</span>
+      <h2>Masked line reveal for the hero name</h2>
+      <span class="verdict ship">Ship this</span>
+    </div>
+    <p class="demo-why">The hero name rises out from behind an invisible mask, one line at a time. Pairs with the typewriter you already have, so the hero reads as one deliberate opening sequence instead of two unrelated tricks. Pure CSS once the spans exist; splitting is 3 lines of JS.</p>
+    <p class="demo-meta">420ms &middot; ease-emphasized &middot; 90ms per line &middot; overflow hidden mask &middot; starts at 60ms</p>
+    <div class="stage">
+      <div class="stage-bar"><span>Hero headline entrance</span><button onclick="replay('d2')">&#9654; Replay</button></div>
+      <div class="canvas" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap">
+        <div class="mask" data-mask style="flex:1;min-width:220px">
+          <span class="mask-line" style="display:block;overflow:hidden">
+            <span class="mask-in" style="display:block;font-family:var(--font-display);font-size:clamp(1.6rem,4.4vw,2.4rem);font-weight:600;letter-spacing:-0.02em;padding-bottom:0.06em">Muhammad</span>
+          </span>
+          <span class="mask-line" style="display:block;overflow:hidden">
+            <span class="mask-in" style="display:block;font-family:var(--font-display);font-size:clamp(1.6rem,4.4vw,2.4rem);font-weight:600;letter-spacing:-0.02em;color:var(--accent-soft)">Hammmad</span>
+          </span>
+        </div>
+        <div style="flex:1;min-width:200px;border-left:1px solid var(--line);padding-left:20px">
+          <p style="font-family:var(--font-mono);font-size:0.6875rem;color:#6f6f78;margin-bottom:8px">each line is clipped by overflow:hidden</p>
+          <p style="font-size:0.875rem;color:var(--ink-dim)">Padding-bottom on the inner span stops the descender in the mask from being clipped.</p>
+        </div>
+      </div>
+    </div>
+    <p class="note"><b>Gotcha.</b> The mask line needs a little bottom padding or the tail of g, y, p gets shaved off. Also set <span style="font-family:var(--font-mono);font-size:0.75rem">overflow:hidden</span> on the outer, never the inner, or the text clips on hover.</p>
+  </section>
+
+  <!-- 3. SCROLL PROGRESS RAIL -->
+  <section class="demo" id="d3">
+    <div class="demo-head">
+      <span class="rank">03</span>
+      <h2>Scroll-linked reading progress rail</h2>
+      <span class="verdict ship">Ship this</span>
+    </div>
+    <p class="demo-why">A 2px accent line pinned to the left edge that fills as you scroll the page. It gives a recruiter a sense of how much is left, and it is the one scroll effect that is genuinely zero JavaScript. Pairs naturally with the sticky section rail you already have.</p>
+    <p class="demo-meta">animation-timeline: scroll(root block) &middot; 2px wide &middot; transform scaleY &middot; no JS at all</p>
+    <div class="stage">
+      <div class="stage-bar"><span>Scroll the page and watch the bar on your screen edge</span><span>pure CSS</span></div>
+      <div class="canvas tall">
+        <p style="color:var(--ink-dim);font-size:0.9375rem">Look at the far left edge of the browser window. There is a thin vertical blue line filling from top to bottom as you scroll. It is <span style="font-family:var(--font-mono);font-size:0.8125rem;color:var(--accent-soft)">position:fixed</span> plus <span style="font-family:var(--font-mono);font-size:0.8125rem;color:var(--accent-soft)">animation-timeline: scroll(root block)</span> and nothing else.</p>
+        <p class="note" style="margin-top:22px"><b>The rule that trips everyone.</b> <span style="font-family:var(--font-mono);font-size:0.75rem">animation-timeline</span> must be declared <i>after</i> any <span style="font-family:var(--font-mono);font-size:0.75rem">animation</span> shorthand, because the shorthand silently resets it back to <span style="font-family:var(--font-mono);font-size:0.75rem">auto</span>. And <span style="font-family:var(--font-mono);font-size:0.75rem">animation-duration: 1ms</span> is required or Firefox ignores the whole thing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. TIMELINE DRAW -->
+  <section class="demo" id="d4">
+    <div class="demo-head">
+      <span class="rank">04</span>
+      <h2>Experience timeline draws itself</h2>
+      <span class="verdict ship">Ship this</span>
+    </div>
+    <p class="demo-why">Your experience section already has a vertical gradient line. Scroll-linking its scaleY to the section's own view progress means the line paints downward exactly as the card arrives. It communicates sequence, which is the one thing motion should do here.</p>
+    <p class="demo-meta">animation-timeline: view() &middot; scaleY 0 to 1 &middot; transform-origin top &middot; needs @supports guard</p>
+    <div class="stage" style="position:relative">
+      <div class="stage-bar"><span>Scroll this stage into view</span><button onclick="replay('d4')">&#9654; Replay</button></div>
+      <div class="canvas tall" data-draw>
+        <div style="position:relative;padding-left:30px">
+          <span class="draw-line" style="position:absolute;left:4px;top:6px;bottom:6px;width:1px;background:linear-gradient(var(--accent),var(--line) 70%,transparent);transform-origin:top;transform:scaleY(0)"></span>
+          <div style="position:relative;margin-bottom:26px">
+            <span style="position:absolute;left:-30px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--raised)"></span>
+            <h3 style="font-family:var(--font-display);font-size:1.2rem;font-weight:600">Associate Software Engineer</h3>
+            <p style="font-family:var(--font-mono);font-size:0.6875rem;color:var(--accent-soft);margin:2px 0 8px">Full-time &middot; 2 Years</p>
+            <p style="color:var(--ink-dim);font-size:0.875rem">Built conversational AI with OpenAI GPT, Dialogflow and LangChain.</p>
+          </div>
+          <div style="position:relative">
+            <span style="position:absolute;left:-30px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--line);box-shadow:0 0 0 4px var(--raised)"></span>
+            <h3 style="font-family:var(--font-display);font-size:1.2rem;font-weight:600">Next role</h3>
+            <p style="color:var(--ink-dim);font-size:0.875rem">The line is already at 100% because you scrolled past it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. THUMB SCALE -->
+  <section class="demo" id="d5">
+    <div class="demo-head">
+      <span class="rank">05</span>
+      <h2>Project thumbnail drifts on scroll</h2>
+      <span class="verdict maybe">Use sparingly</span>
+    </div>
+    <p class="demo-why">As a project card passes through the viewport its screenshot scales from 1.04 down to 1.0 and the gradient veil thins. Subtle depth without a shadow. The restraint rule matters here: one scroll-linked element per viewport, never three stacked.</p>
+    <p class="demo-meta">scale 1.04 to 1.0 &middot; view() timeline &middot; exit 0% to exit 100% &middot; max 1 per screen</p>
+    <div class="stage">
+      <div class="stage-bar"><span>Scroll through this tall stage</span><span>view() timeline</span></div>
+      <div class="canvas tall" data-zoom>
+        <div style="border:1px solid var(--line);border-radius:var(--radius);overflow:hidden">
+          <div class="zoom-img" style="aspect-ratio:16/9;position:relative;transform:scale(1.04)">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 7px,rgba(255,255,255,0.03) 7px 8px)"></div>
+            <div class="zoom-veil" style="position:absolute;inset:0;background:linear-gradient(to top,rgba(18,18,20,0.9),rgba(18,18,20,0.18))"></div>
+            <span style="position:absolute;left:16px;bottom:14px;z-index:1;font-family:var(--font-mono);font-size:0.75rem">Conversational AI</span>
+          </div>
+          <div style="padding:20px">
+            <h3 style="font-family:var(--font-display);font-size:1.2rem;font-weight:600">AI Customer Support Chatbot</h3>
+            <p style="color:var(--ink-dim);font-size:0.875rem;margin-top:4px">The image starts slightly oversized and settles as the card reaches the middle of the screen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SPOTLIGHT -->
+  <section class="demo" id="d6">
+    <div class="demo-head">
+      <span class="rank">06</span>
+      <h2>Cursor spotlight on project cards</h2>
+      <span class="verdict maybe">Nice, optional</span>
+    </div>
+    <p class="demo-why">A soft accent glow that follows the pointer across a card, plus a border that brightens. This gives your flat hairline cards some life without reintroducing the drop shadows the design deliberately avoids. Two custom properties, ~10 lines of JS.</p>
+    <p class="demo-meta">--mx / --my custom props &middot; 120ms prop smoothing &middot; radial-gradient overlay &middot; hover only</p>
+    <div class="stage">
+      <div class="stage-bar"><span>Move your pointer over the card</span><span>hover only</span></div>
+      <div class="canvas" id="d6">
+        <div class="spot" style="border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:22px 20px;cursor:pointer">
+          <div class="spot-glow" style="position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity var(--motion-base) var(--ease-soft);pointer-events:none;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(91,140,255,0.13),transparent 70%)"></div>
+          <h3 style="font-family:var(--font-display);font-size:1.2rem;font-weight:600;position:relative">E-Commerce Platform</h3>
+          <p style="color:var(--ink-dim);font-size:0.875rem;margin-top:6px;position:relative">Product catalog, cart and payments on React and Node.js. The border tints toward the accent as the glow follows you across the surface.</p>
+          <div style="display:flex;gap:7px;margin-top:14px;position:relative">
+            <span style="font-family:var(--font-mono);font-size:0.6875rem;color:var(--ink-dim);border:1px solid var(--line);padding:3px 9px;border-radius:var(--radius-sm)">React</span>
+            <span style="font-family:var(--font-mono);font-size:0.6875rem;color:var(--ink-dim);border:1px solid var(--line);padding:3px 9px;border-radius:var(--radius-sm)">Node.js</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note"><b>Make the card <span style="font-family:var(--font-mono);font-size:0.75rem">position: relative</span> or the glow positions against the wrong ancestor.</b> Also gate this on <span style="font-family:var(--font-mono);font-size:0.75rem">@media (hover: hover)</span> or it sticks lit on touch devices.</p>
+  </section>
+
+  <!-- 7. SCRAMBLE -->
+  <section class="demo" id="d7">
+    <div class="demo-head">
+      <span class="rank">07</span>
+      <h2>Scramble / decode typewriter</h2>
+      <span class="verdict skip">Skip</span>
+    </div>
+    <p class="demo-why">Replaces your current typewriter with random glyphs that resolve into the real characters. It is genuinely eye-catching, which is the problem: it is the single most recognisable &ldquo;AI portfolio&rdquo; tell. Your existing typewriter already does the job and reads as more restrained. Keep yours.</p>
+    <p class="demo-meta">for reference only &middot; not recommended for a recruiter-facing site</p>
+    <div class="stage">
+      <div class="stage-bar"><span>Reference only</span><button onclick="replay('d7')">&#9654; Replay</button></div>
+      <div class="canvas">
+        <p id="scrambleOut" style="font-size:1rem;line-height:1.6;min-height:3.2em"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. MARQUEE -->
+  <section class="demo" id="d8">
+    <div class="demo-head">
+      <span class="rank">08</span>
+      <h2>Infinite tech marquee</h2>
+      <span class="verdict skip">Skip</span>
+    </div>
+    <p class="demo-why">A horizontally scrolling strip of stack names. It works and Linear-style sites all have one. On a site with four small skill groups and one timeline entry it says &ldquo;I have nothing else to show you&rdquo; and adds a permanently running animation. It also competes with your reading. Only reconsider if the skill list grows to 20+ items.</p>
+    <p class="demo-meta">translateX loop &middot; duplicate content for seamless wrap &middot; linear is correct here</p>
+    <div class="stage">
+      <div class="stage-bar"><span>Reference only</span><span>linear easing is correct for marquees</span></div>
+      <div class="canvas" style="overflow:hidden">
+        <div style="display:flex;gap:34px;width:max-content;animation:slide 14s linear infinite;font-family:var(--font-mono);font-size:0.8125rem;color:var(--ink-dim)">
+          <span>OpenAI GPT</span><span>LangChain</span><span>Dialogflow</span><span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span><span>Python</span><span>REST APIs</span><span>Git</span>
+          <span>OpenAI GPT</span><span>LangChain</span><span>Dialogflow</span><span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span><span>Python</span><span>REST APIs</span><span>Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. CONIC BORDER -->
+  <section class="demo" id="d9">
+    <div class="demo-head">
+      <span class="rank">09</span>
+      <h2>Conic gradient spin border</h2>
+      <span class="verdict skip">Skip</span>
+    </div>
+    <p class="demo-why">A rotating conic-gradient ring around a card. Popular on 2024-2025 agency sites and now thoroughly expected. It also cannot be done tastefully at a hairline weight on a near-black background, and a continuously spinning ring next to your blinking caret gives the hero two competing loops.</p>
+    <p class="demo-meta">reference only &middot; conic-gradient + rotate &middot; 1s linear infinite</p>
+    <div class="stage">
+      <div class="stage-bar"><span>Reference only</span><span>1s linear infinite</span></div>
+      <div class="canvas" style="display:flex;justify-content:center">
+        <div style="padding:2px;border-radius:var(--radius);background:conic-gradient(from 0turn,var(--accent),transparent 40%,var(--accent));animation:spin 1s linear infinite;width:min(340px,100%)">
+          <div style="background:var(--raised);border-radius:calc(var(--radius) - 2px);padding:22px">
+            <h3 style="font-family:var(--font-display);font-size:1.2rem;font-weight:600">AI Customer Support Chatbot</h3>
+            <p style="color:var(--ink-dim);font-size:0.875rem;margin-top:6px">The ring never rests. It sits there spinning while you try to read this sentence.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<style>
+@keyframes slide { to { transform: translateX(-50%); } }
+@keyframes spin { to { transform: rotate(1turn); } }
+
+[data-reveal] .r-item { opacity: 0; transform: translateY(12px); }
+[data-reveal].in .r-item {
+  opacity: 1; transform: none;
+  transition: opacity var(--motion-medium) var(--ease-out), transform var(--motion-medium) var(--ease-out);
+}
+[data-reveal].in .r-item:nth-child(1) { transition-delay: 0ms; }
+[data-reveal].in .r-row .r-item:nth-child(2) { transition-delay: 60ms; }
+[data-reveal].in .r-row .r-item:nth-child(3) { transition-delay: 120ms; }
+[data-reveal].in .r-row .r-item:nth-child(4) { transition-delay: 180ms; }
+[data-reveal].in .r-row .r-item:nth-child(5) { transition-delay: 240ms; }
+[data-reveal].in > .r-item:nth-of-type(1) { transition-delay: 300ms; }
+[data-reveal].in > .r-item:nth-of-type(2) { transition-delay: 360ms; }
+
+.mask-in { transform: translateY(105%); }
+.mask.in .mask-in { transform: none; transition: transform 420ms var(--ease-emph); }
+.mask.in .mask-line:nth-child(1) .mask-in { transition-delay: 60ms; }
+.mask.in .mask-line:nth-child(2) .mask-in { transition-delay: 150ms; }
+
+.draw-line { transform: scaleY(0); }
+[data-draw].in .draw-line { animation: drawline linear both; animation-timeline: view(); animation-range: entry 10% cover 45%; }
+@keyframes drawline { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+.zoom-img { transform: scale(1.04); }
+.zoom-veil { opacity: 1; }
+[data-zoom].in .zoom-img { animation: zoomin linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+[data-zoom].in .zoom-veil { animation: veillin linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+@keyframes zoomin { from { transform: scale(1.04); } to { transform: scale(1); } }
+@keyframes veillin { from { opacity: 1; } to { opacity: 0.45; } }
+
+.spot { position: relative; }
+.spot:hover { border-color: var(--accent); }
+.spot:hover .spot-glow { opacity: 1; }
+
+.progress-rail {
+  position: fixed; left: 0; top: 0; width: 2px; height: 100vh; z-index: 200;
+  background: var(--accent); transform-origin: top; transform: scaleY(0);
+}
+@supports (animation-timeline: scroll()) {
+  .progress-rail {
+    animation: railfill linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+@keyframes railfill { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+</style>
+
+<div class="progress-rail" id="rail"></div>
+
+<script>
+const supportsView = CSS.supports("animation-timeline: view()");
+document.getElementById("supports").textContent =
+  "view() " + (supportsView ? "supported" : "NOT supported — demos 04/05 need a fallback");
+
+const rail = document.getElementById("rail");
+if (!CSS.supports("animation-timeline: scroll()")) {
+  const upd = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    rail.style.transform = "scaleY(" + (max > 0 ? window.scrollY / max : 0) + ")";
+  };
+  window.addEventListener("scroll", upd, { passive: true });
+  upd();
+}
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      e.target.classList.add("in");
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+document.querySelectorAll("[data-reveal], [data-mask], [data-draw], [data-zoom]").forEach((el) => io.observe(el));
+
+function replay(id) {
+  const el = document.getElementById(id);
+  const t = el.querySelector("[data-reveal], [data-mask], [data-draw], [data-zoom]");
+  if (t) { t.classList.remove("in"); void t.offsetWidth; t.classList.add("in"); }
+  if (id === "d7") scramble();
+}
+
+function replayAll() {
+  document.querySelectorAll("[data-reveal], [data-mask]").forEach((t) => {
+    t.classList.remove("in");
+  });
+  void document.body.offsetWidth;
+  document.querySelectorAll("[data-reveal], [data-mask]").forEach((t) => t.classList.add("in"));
+  scramble();
+}
+
+const stage = document.getElementById("d6");
+const spot = stage.querySelector(".spot");
+spot.addEventListener("pointermove", (e) => {
+  const r = spot.getBoundingClientRect();
+  spot.style.setProperty("--mx", (e.clientX - r.left) + "px");
+  spot.style.setProperty("--my", (e.clientY - r.top) + "px");
+});
+
+const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&@*<>/\\|=+-0123456789";
+const target = "LangChain with pgvector on Postgres for retrieval, OpenAI for embeddings and generation.";
+const out = document.getElementById("scrambleOut");
+let scrambleTimer;
+function scramble() {
+  clearTimeout(scrambleTimer);
+  const total = target.length;
+  let frame = 0;
+  const start = performance.now();
+  const step = () => {
+    const elapsed = performance.now() - start;
+    const settled = Math.floor((elapsed / 1400) * total);
+    let s = "";
+    for (let i = 0; i < total; i++) {
+      if (i < settled) s += target[i];
+      else if (target[i] === " ") s += " ";
+      else s += glyphs[Math.floor(Math.random() * glyphs.length)];
+    }
+    out.textContent = s;
+    if (settled < total) scrambleTimer = setTimeout(step, 30);
+    else out.textContent = target;
+  };
+  step();
+}
+scramble();
+</script>
+
+<style>
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-draw].in .draw-line,
+  [data-zoom].in .zoom-img,
+  [data-zoom].in .zoom-veil {
+    animation: none !important;
+    animation-timeline: none !important;
+    transform: none;
+    opacity: 1;
+  }
+  .zoom-img { transform: none; }
+  .zoom-veil { opacity: 1; }
+  .mask-in { transform: none; }
+  [data-reveal] .r-item { opacity: 1; transform: none; }
+  .progress-rail { display: none; }
+}
+</style>
+
+</body>
+</html>

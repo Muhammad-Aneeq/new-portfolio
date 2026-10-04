@@ -1,0 +1,187 @@
+- generic [active] [ref=f17e1]:
+  - generic [ref=f17e3]:
+    - heading "Motion Lab" [level=1] [ref=f17e4]
+    - paragraph [ref=f17e5]:
+      - text: Every technique below runs live in this page. Each stage has a replay button so you can watch it again without scrolling back up. Findings from live sites are on the
+      - link "index page" [ref=f17e6] [cursor=pointer]:
+        - /url: index.html
+      - text: . For the whole portfolio with these applied, open
+      - link "site-v2" [ref=f17e7] [cursor=pointer]:
+        - /url: site-v2.html
+      - text: .
+  - generic [ref=f17e9]:
+    - button "▶ Replay all time-based" [ref=f17e10] [cursor=pointer]
+    - button "Jump through each" [ref=f17e11] [cursor=pointer]
+    - generic [ref=f17e12]: view() supported
+  - generic [ref=f17e13]:
+    - generic [ref=f17e14]:
+      - generic [ref=f17e15]:
+        - generic [ref=f17e16]: "01"
+        - heading "Staggered scroll reveal" [level=2] [ref=f17e17]
+        - generic [ref=f17e18]: Ship this
+      - paragraph [ref=f17e19]: The single biggest upgrade. Every section's children fade up 12px as they enter the viewport, 60ms apart. It gives the page a sense of order and pacing without moving anything permanently. One IntersectionObserver, ~15 lines, no library.
+      - paragraph [ref=f17e20]: 12px amplitude · 280ms · ease-out · 60ms stagger · triggers once · fires 12% early
+      - generic [ref=f17e21]:
+        - generic [ref=f17e22]:
+          - generic [ref=f17e23]: Scroll the stage into view, or replay
+          - button "▶ Replay" [ref=f17e24] [cursor=pointer]
+        - generic [ref=f17e25]:
+          - generic [ref=f17e26]:
+            - generic [ref=f17e27]: TypeScript
+            - generic [ref=f17e28]: Python
+            - generic [ref=f17e29]: React
+            - generic [ref=f17e30]: LangChain
+            - generic [ref=f17e31]: Node.js
+          - generic [ref=f17e32]:
+            - heading "AI Customer Support Chatbot" [level=3] [ref=f17e33]
+            - paragraph [ref=f17e34]: Second item, 60ms later than the first.
+          - generic [ref=f17e35]:
+            - heading "E-Commerce Platform" [level=3] [ref=f17e36]
+            - paragraph [ref=f17e37]: Third item, 60ms after that.
+      - paragraph [ref=f17e38]: Why 12px and not 20px. 20px is the default everyone ships and it reads as a template. 8–12px is the range that reads as considered. Amplitude is the cheapest thing to tune and the most visible.
+    - generic [ref=f17e39]:
+      - generic [ref=f17e40]:
+        - generic [ref=f17e41]: "02"
+        - heading "Masked line reveal for the hero name" [level=2] [ref=f17e42]
+        - generic [ref=f17e43]: Ship this
+      - paragraph [ref=f17e44]: The hero name rises out from behind an invisible mask, one line at a time. Pairs with the typewriter you already have, so the hero reads as one deliberate opening sequence instead of two unrelated tricks. Pure CSS once the spans exist; splitting is 3 lines of JS.
+      - paragraph [ref=f17e45]: 420ms · ease-emphasized · 90ms per line · overflow hidden mask · starts at 60ms
+      - generic [ref=f17e46]:
+        - generic [ref=f17e47]:
+          - generic [ref=f17e48]: Hero headline entrance
+          - button "▶ Replay" [ref=f17e49] [cursor=pointer]
+        - generic [ref=f17e50]:
+          - generic [ref=f17e51]:
+            - generic [ref=f17e52]: Muhammad
+            - generic [ref=f17e54]: Hammmad
+          - generic [ref=f17e56]:
+            - paragraph [ref=f17e57]: each line is clipped by overflow:hidden
+            - paragraph [ref=f17e58]: Padding-bottom on the inner span stops the descender in the mask from being clipped.
+      - paragraph [ref=f17e59]: Gotcha. The mask line needs a little bottom padding or the tail of g, y, p gets shaved off. Also set overflow:hidden on the outer, never the inner, or the text clips on hover.
+    - generic [ref=f17e60]:
+      - generic [ref=f17e61]:
+        - generic [ref=f17e62]: "03"
+        - heading "Scroll-linked reading progress rail" [level=2] [ref=f17e63]
+        - generic [ref=f17e64]: Ship this
+      - paragraph [ref=f17e65]: A 2px accent line pinned to the left edge that fills as you scroll the page. It gives a recruiter a sense of how much is left, and it is the one scroll effect that is genuinely zero JavaScript. Pairs naturally with the sticky section rail you already have.
+      - paragraph [ref=f17e66]: "animation-timeline: scroll(root block) · 2px wide · transform scaleY · no JS at all"
+      - generic [ref=f17e67]:
+        - generic [ref=f17e68]:
+          - generic [ref=f17e69]: Scroll the page and watch the bar on your screen edge
+          - generic [ref=f17e70]: pure CSS
+        - generic [ref=f17e71]:
+          - paragraph [ref=f17e72]: "Look at the far left edge of the browser window. There is a thin vertical blue line filling from top to bottom as you scroll. It is position:fixed plus animation-timeline: scroll(root block) and nothing else."
+          - paragraph [ref=f17e73]: "The rule that trips everyone. animation-timeline must be declared after any animation shorthand, because the shorthand silently resets it back to auto. And animation-duration: 1ms is required or Firefox ignores the whole thing."
+    - generic [ref=f17e74]:
+      - generic [ref=f17e75]:
+        - generic [ref=f17e76]: "04"
+        - heading "Experience timeline draws itself" [level=2] [ref=f17e77]
+        - generic [ref=f17e78]: Ship this
+      - paragraph [ref=f17e79]: Your experience section already has a vertical gradient line. Scroll-linking its scaleY to the section's own view progress means the line paints downward exactly as the card arrives. It communicates sequence, which is the one thing motion should do here.
+      - paragraph [ref=f17e80]: "animation-timeline: view() · scaleY 0 to 1 · transform-origin top · needs @supports guard"
+      - generic [ref=f17e81]:
+        - generic [ref=f17e82]:
+          - generic [ref=f17e83]: Scroll this stage into view
+          - button "▶ Replay" [ref=f17e84] [cursor=pointer]
+        - generic [ref=f17e86]:
+          - generic [ref=f17e87]:
+            - heading "Associate Software Engineer" [level=3] [ref=f17e89]
+            - paragraph [ref=f17e90]: Full-time · 2 Years
+            - paragraph [ref=f17e91]: Built conversational AI with OpenAI GPT, Dialogflow and LangChain.
+          - generic [ref=f17e92]:
+            - heading "Next role" [level=3] [ref=f17e94]
+            - paragraph [ref=f17e95]: The line is already at 100% because you scrolled past it.
+    - generic [ref=f17e96]:
+      - generic [ref=f17e97]:
+        - generic [ref=f17e98]: "05"
+        - heading "Project thumbnail drifts on scroll" [level=2] [ref=f17e99]
+        - generic [ref=f17e100]: Use sparingly
+      - paragraph [ref=f17e101]: "As a project card passes through the viewport its screenshot scales from 1.04 down to 1.0 and the gradient veil thins. Subtle depth without a shadow. The restraint rule matters here: one scroll-linked element per viewport, never three stacked."
+      - paragraph [ref=f17e102]: scale 1.04 to 1.0 · view() timeline · exit 0% to exit 100% · max 1 per screen
+      - generic [ref=f17e103]:
+        - generic [ref=f17e104]:
+          - generic [ref=f17e105]: Scroll through this tall stage
+          - generic [ref=f17e106]: view() timeline
+        - generic [ref=f17e108]:
+          - generic [ref=f17e109]: Conversational AI
+          - generic [ref=f17e113]:
+            - heading "AI Customer Support Chatbot" [level=3] [ref=f17e114]
+            - paragraph [ref=f17e115]: The image starts slightly oversized and settles as the card reaches the middle of the screen.
+    - generic [ref=f17e116]:
+      - generic [ref=f17e117]:
+        - generic [ref=f17e118]: "06"
+        - heading "Cursor spotlight on project cards" [level=2] [ref=f17e119]
+        - generic [ref=f17e120]: Nice, optional
+      - paragraph [ref=f17e121]: A soft accent glow that follows the pointer across a card, plus a border that brightens. This gives your flat hairline cards some life without reintroducing the drop shadows the design deliberately avoids. Two custom properties, ~10 lines of JS.
+      - paragraph [ref=f17e122]: "--mx / --my custom props · 120ms prop smoothing · radial-gradient overlay · hover only"
+      - generic [ref=f17e123]:
+        - generic [ref=f17e124]:
+          - generic [ref=f17e125]: Move your pointer over the card
+          - generic [ref=f17e126]: hover only
+        - generic [ref=f17e128] [cursor=pointer]:
+          - heading "E-Commerce Platform" [level=3] [ref=f17e129]
+          - paragraph [ref=f17e130]: Product catalog, cart and payments on React and Node.js. The border tints toward the accent as the glow follows you across the surface.
+          - generic [ref=f17e131]:
+            - generic [ref=f17e132]: React
+            - generic [ref=f17e133]: Node.js
+      - paragraph [ref=f17e134]:
+        - generic [ref=f17e135]: "Make the card position: relative or the glow positions against the wrong ancestor."
+        - text: "Also gate this on @media (hover: hover) or it sticks lit on touch devices."
+    - generic [ref=f17e136]:
+      - generic [ref=f17e137]:
+        - generic [ref=f17e138]: "07"
+        - heading "Scramble / decode typewriter" [level=2] [ref=f17e139]
+        - generic [ref=f17e140]: Skip
+      - paragraph [ref=f17e141]: "Replaces your current typewriter with random glyphs that resolve into the real characters. It is genuinely eye-catching, which is the problem: it is the single most recognisable “AI portfolio” tell. Your existing typewriter already does the job and reads as more restrained. Keep yours."
+      - paragraph [ref=f17e142]: for reference only · not recommended for a recruiter-facing site
+      - generic [ref=f17e143]:
+        - generic [ref=f17e144]:
+          - generic [ref=f17e145]: Reference only
+          - button "▶ Replay" [ref=f17e146] [cursor=pointer]
+        - paragraph [ref=f17e148]
+    - generic [ref=f17e149]:
+      - generic [ref=f17e150]:
+        - generic [ref=f17e151]: "08"
+        - heading "Infinite tech marquee" [level=2] [ref=f17e152]
+        - generic [ref=f17e153]: Skip
+      - paragraph [ref=f17e154]: A horizontally scrolling strip of stack names. It works and Linear-style sites all have one. On a site with four small skill groups and one timeline entry it says “I have nothing else to show you” and adds a permanently running animation. It also competes with your reading. Only reconsider if the skill list grows to 20+ items.
+      - paragraph [ref=f17e155]: translateX loop · duplicate content for seamless wrap · linear is correct here
+      - generic [ref=f17e156]:
+        - generic [ref=f17e157]:
+          - generic [ref=f17e158]: Reference only
+          - generic [ref=f17e159]: linear easing is correct for marquees
+        - generic [ref=f17e161]:
+          - generic [ref=f17e162]: OpenAI GPT
+          - generic [ref=f17e163]: LangChain
+          - generic [ref=f17e164]: Dialogflow
+          - generic [ref=f17e165]: React
+          - generic [ref=f17e166]: Next.js
+          - generic [ref=f17e167]: Node.js
+          - generic [ref=f17e168]: TypeScript
+          - generic [ref=f17e169]: Python
+          - generic [ref=f17e170]: REST APIs
+          - generic [ref=f17e171]: Git
+          - generic [ref=f17e172]: OpenAI GPT
+          - generic [ref=f17e173]: LangChain
+          - generic [ref=f17e174]: Dialogflow
+          - generic [ref=f17e175]: React
+          - generic [ref=f17e176]: Next.js
+          - generic [ref=f17e177]: Node.js
+          - generic [ref=f17e178]: TypeScript
+          - generic [ref=f17e179]: Python
+          - generic [ref=f17e180]: REST APIs
+          - generic [ref=f17e181]: Git
+    - generic [ref=f17e182]:
+      - generic [ref=f17e183]:
+        - generic [ref=f17e184]: "09"
+        - heading "Conic gradient spin border" [level=2] [ref=f17e185]
+        - generic [ref=f17e186]: Skip
+      - paragraph [ref=f17e187]: A rotating conic-gradient ring around a card. Popular on 2024-2025 agency sites and now thoroughly expected. It also cannot be done tastefully at a hairline weight on a near-black background, and a continuously spinning ring next to your blinking caret gives the hero two competing loops.
+      - paragraph [ref=f17e188]: reference only · conic-gradient + rotate · 1s linear infinite
+      - generic [ref=f17e189]:
+        - generic [ref=f17e190]:
+          - generic [ref=f17e191]: Reference only
+          - generic [ref=f17e192]: 1s linear infinite
+        - generic [ref=f17e195]:
+          - heading "AI Customer Support Chatbot" [level=3] [ref=f17e196]
+          - paragraph [ref=f17e197]: The ring never rests. It sits there spinning while you try to read this sentence.

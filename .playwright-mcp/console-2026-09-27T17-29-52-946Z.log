@@ -1,0 +1,3 @@
+[      43ms] TypeError: Failed to construct 'KeyframeEffect': 1 argument required, but only 0 present.
+    at http://localhost:4173/previews/motion-lab.html:426:16
+[     165ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4173/favicon.ico:0

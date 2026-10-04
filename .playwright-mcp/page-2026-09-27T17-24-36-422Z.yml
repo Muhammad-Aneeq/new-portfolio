@@ -1,0 +1,97 @@
+- generic [active] [ref=f6e1]:
+  - generic [ref=f6e3]:
+    - paragraph [ref=f6e4]:
+      - link "My new course called aiforui.dev is in early access!" [ref=f6e5] [cursor=pointer]:
+        - /url: https://aiforui.dev/
+      - text: Early access has closed.
+    - button "Close" [ref=f6e6] [cursor=pointer]
+  - generic [ref=f6e9]:
+    - banner [ref=f6e10]:
+      - link "Emil Kowalski" [ref=f6e11] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f6e12]: Design Engineer
+    - main [ref=f6e13]:
+      - generic [ref=f6e14]: Today
+      - paragraph [ref=f6e15]: I work on the Web team at Linear. I like to build things for designers and developers, think deeply about the user interface, how it looks, feels, behaves.
+      - paragraph [ref=f6e16]: Previously, I worked on the design team at Vercel.
+      - generic [ref=f6e17]:
+        - generic [ref=f6e18]: Projects
+        - generic [ref=f6e19]:
+          - link "aiforui.dev AI for Designers and Engineers." [ref=f6e20] [cursor=pointer]:
+            - /url: https://aiforui.dev/
+            - generic [ref=f6e21]: aiforui.dev
+            - generic [ref=f6e22]: AI for Designers and Engineers.
+          - link "Sonner An opinionated toast component for React." [ref=f6e23] [cursor=pointer]:
+            - /url: https://sonner.emilkowal.ski/
+            - generic [ref=f6e24]: Sonner
+            - generic [ref=f6e25]: An opinionated toast component for React.
+          - link "animations.dev A course on web animations." [ref=f6e26] [cursor=pointer]:
+            - /url: https://animations.dev/
+            - generic [ref=f6e27]: animations.dev
+            - generic [ref=f6e28]: A course on web animations.
+          - link "Vaul A drawer component for React." [ref=f6e29] [cursor=pointer]:
+            - /url: https://vaul.emilkowal.ski/
+            - generic [ref=f6e30]: Vaul
+            - generic [ref=f6e31]: A drawer component for React.
+      - generic [ref=f6e32]:
+        - generic [ref=f6e33]: Writing
+        - generic [ref=f6e34]:
+          - link "Friction as a Feature A natural filter for bad ideas." [ref=f6e35] [cursor=pointer]:
+            - /url: /ui/friction-as-a-feature
+            - generic [ref=f6e36]: Friction as a Feature
+            - generic [ref=f6e37]: A natural filter for bad ideas.
+          - link "You Don’t Need Animations Why you are animating more often than you should." [ref=f6e38] [cursor=pointer]:
+            - /url: /ui/you-dont-need-animations
+            - generic [ref=f6e39]: You Don’t Need Animations
+            - generic [ref=f6e40]: Why you are animating more often than you should.
+          - link "Agents with Taste How to transfer taste into an AI." [ref=f6e41] [cursor=pointer]:
+            - /url: /ui/agents-with-taste
+            - generic [ref=f6e42]: Agents with Taste
+            - generic [ref=f6e43]: How to transfer taste into an AI.
+          - link "Building a Toast Component My experience building Sonner, a toast library." [ref=f6e44] [cursor=pointer]:
+            - /url: /ui/building-a-toast-component
+            - generic [ref=f6e45]: Building a Toast Component
+            - generic [ref=f6e46]: My experience building Sonner, a toast library.
+          - link "Developing Taste Why taste matters and how to develop it." [ref=f6e47] [cursor=pointer]:
+            - /url: /ui/developing-taste
+            - generic [ref=f6e48]: Developing Taste
+            - generic [ref=f6e49]: Why taste matters and how to develop it.
+          - link "The Magic of Clip Path One of the most underrated CSS properties." [ref=f6e50] [cursor=pointer]:
+            - /url: /ui/the-magic-of-clip-path
+            - generic [ref=f6e51]: The Magic of Clip Path
+            - generic [ref=f6e52]: One of the most underrated CSS properties.
+          - link "7 Practical Animation Tips Simple ideas you can use to improve your animations." [ref=f6e53] [cursor=pointer]:
+            - /url: /ui/7-practical-animation-tips
+            - generic [ref=f6e54]: 7 Practical Animation Tips
+            - generic [ref=f6e55]: Simple ideas you can use to improve your animations.
+          - link "Train Your Judgement Settling for good enough is not good enough." [ref=f6e56] [cursor=pointer]:
+            - /url: /ui/train-your-judgement
+            - generic [ref=f6e57]: Train Your Judgement
+            - generic [ref=f6e58]: Settling for good enough is not good enough.
+          - link "Building an animation course Behind the scenes of my animation course." [ref=f6e59] [cursor=pointer]:
+            - /url: /ui/building-an-animation-course
+            - generic [ref=f6e60]: Building an animation course
+            - generic [ref=f6e61]: Behind the scenes of my animation course.
+          - link "Building a Drawer Component My experience building a drawer component for React." [ref=f6e62] [cursor=pointer]:
+            - /url: /ui/building-a-drawer-component
+            - generic [ref=f6e63]: Building a Drawer Component
+            - generic [ref=f6e64]: My experience building a drawer component for React.
+      - generic [ref=f6e65]:
+        - generic [ref=f6e66]: Newsletter
+        - generic [ref=f6e67]: Exclusive, newsletter-only content once a month. No spam, no nonsense.
+        - generic [ref=f6e68]:
+          - generic [ref=f6e69]: Email
+          - textbox "Email" [ref=f6e70]:
+            - /placeholder: Enter your email
+          - button "Subscribe" [ref=f6e71] [cursor=pointer]
+      - generic [ref=f6e73]:
+        - generic [ref=f6e74]: More
+        - generic [ref=f6e75]:
+          - text: You can see more of my work on
+          - link "Twitter" [ref=f6e76] [cursor=pointer]:
+            - /url: https://twitter.com/emilkowalski
+          - text: and more of my code on
+          - link "GitHub" [ref=f6e77] [cursor=pointer]:
+            - /url: https://github.com/emilkowalski
+          - text: .
+  - alert [ref=f6e78]

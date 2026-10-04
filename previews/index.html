@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="data:," />
+<title>Animation research — findings for this portfolio</title>
+<style>
+:root {
+  --surface: #121214;
+  --raised: #1a1a1d;
+  --raised-hover: #212126;
+  --line: #2a2a2e;
+  --ink: #ececee;
+  --ink-dim: #9c9ca3;
+  --accent: #5b8cff;
+  --accent-soft: #8fb0ff;
+  --on-accent: #0b0b0c;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --font-mono: "Cascadia Code", Consolas, ui-monospace, "SF Mono", Menlo, monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: var(--font-sans); background: var(--surface); color: var(--ink);
+  line-height: 1.65; -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent-soft); text-underline-offset: 3px; }
+code, .mono { font-family: var(--font-mono); font-size: 0.8125rem; }
+.wrap { width: min(920px, 90%); margin: 0 auto; }
+
+header.hero { padding: 80px 0 40px; border-bottom: 1px solid var(--line); }
+header.hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; letter-spacing: -0.02em; }
+header.hero p { color: var(--ink-dim); max-width: 62ch; margin-top: 14px; }
+
+nav.links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+nav.links a {
+  border: 1px solid var(--line); background: var(--raised); color: var(--ink);
+  padding: 10px 16px; border-radius: var(--radius-sm); text-decoration: none;
+  font-family: var(--font-mono); font-size: 0.8125rem;
+  transition: border-color 0.15s cubic-bezier(0.4,0,0.2,1), background 0.15s cubic-bezier(0.4,0,0.2,1), color 0.15s;
+}
+nav.links a:hover { border-color: var(--accent); background: var(--raised-hover); }
+
+section { padding: 52px 0; border-bottom: 1px solid var(--line); }
+h2 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 8px; }
+.sub { color: var(--ink-dim); margin-bottom: 26px; max-width: 66ch; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
+td.num { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--accent-soft); white-space: nowrap; }
+td.site { font-family: var(--font-mono); font-size: 0.8125rem; white-space: nowrap; }
+.zero { color: #ff8f8f; }
+.some { color: #ffd479; }
+.many { color: #7ee2a8; }
+
+.finding { display: flex; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.finding:last-child { border-bottom: none; }
+.finding .n {
+  font-family: var(--font-mono); font-size: 0.75rem; color: var(--on-accent);
+  background: var(--accent); width: 24px; height: 24px; flex: none;
+  display: grid; place-items: center; border-radius: 50%;
+}
+.finding h3 { font-size: 1rem; font-weight: 600; margin-bottom: 3px; }
+.finding p { color: var(--ink-dim); font-size: 0.9375rem; }
+.finding p b { color: var(--ink); font-weight: 600; }
+
+.warn {
+  border: 1px solid rgba(255,143,143,0.35); background: rgba(255,143,143,0.06);
+  border-radius: var(--radius); padding: 20px 22px; margin: 26px 0;
+}
+.warn h3 { color: #ff8f8f; font-size: 1rem; margin-bottom: 8px; }
+.warn p { color: var(--ink-dim); font-size: 0.9375rem; margin-bottom: 10px; }
+.warn pre {
+  background: #0e0e10; border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: 14px 16px; overflow-x: auto; font-family: var(--font-mono);
+  font-size: 0.75rem; color: #b9c6e0; line-height: 1.6;
+}
+.warn .cmt { color: #5f6b80; }
+
+.rec { display: grid; gap: 12px; margin-top: 8px; }
+.rec-item {
+  display: grid; grid-template-columns: 34px 1fr; gap: 14px;
+  border: 1px solid var(--line); background: var(--raised);
+  border-radius: var(--radius); padding: 16px 18px;
+}
+.rec-rank { font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent); }
+.rec-item h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+.rec-item p { color: var(--ink-dim); font-size: 0.875rem; }
+.rec-item .eff { font-family: var(--font-mono); font-size: 0.6875rem; color: #6f6f78; margin-top: 7px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+ul.plain { list-style: none; color: var(--ink-dim); }
+ul.plain li { padding: 6px 0 6px 20px; position: relative; }
+ul.plain li::before { content: "\2014"; position: absolute; left: 0; color: var(--line); }
+ul.plain b { color: var(--ink); font-weight: 600; }
+
+footer { padding: 34px 0 60px; color: #6f6f78; font-family: var(--font-mono); font-size: 0.75rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>What to animate, and what to leave alone</h1>
+  <p>Findings from probing eight live portfolio and product sites with Playwright, plus a pass on current motion-design craft guidance. Everything here is achievable in your existing zero-dependency setup — no GSAP, no Lenis, no Framer Motion, no CDN.</p>
+  <nav class="links">
+    <a href="site-v2.html">See it on your actual page &rarr;</a>
+    <a href="motion-lab.html">Motion Lab — 9 demos &rarr;</a>
+    <a href="http://localhost:4173/index.html" target="_blank" rel="noopener">Your site, untouched</a>
+  </nav>
+</header>
+
+<section>
+  <h2>What the real sites actually load</h2>
+  <p class="sub">I visited each site, walked every readable stylesheet counting <span class="mono">@keyframes</span> and transitions, and checked the global scope for the usual libraries.</p>
+  <table>
+    <thead>
+      <tr><th>Site</th><th>GSAP</th><th>Lenis</th><th>Framer</th><th>Three</th><th>Keyframes</th><th>Transitions</th><th>Median dur.</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="site">emilkowal.ski</td><td class="num zero">no</td><td class="num zero">no</td><td class="num zero">no</td><td class="num zero">no</td><td class="num">7</td><td class="num">22</td><td class="num">—</td></tr>
+      <tr><td class="site">antfu.me</td><td class="num zero">no</td><td class="num zero">no</td><td class="num zero">no</td><td class="num zero">no</td><td class="num">2</td><td class="num">27</td><td class="num">200ms</td></tr>
+      <tr><td class="site">joshwcomeau.com</td><td class="num zero">no</td><td class="num zero">no</td><td class="num zero">no</td><td class="num zero">no</td><td class="num many">54</td><td class="num">36</td><td class="num">300ms</td></tr>
+      <tr><td class="site">resend.com</td><td class="num zero">no</td><td class="num zero">no</td><td class="num zero">no</td><td class="num zero">no</td><td class="num many">39</td><td class="num many">175</td><td class="num">—</td></tr>
+      <tr><td class="site">linear.app</td><td class="num zero">no</td><td class="num zero">no</td><td class="num zero">no</td><td class="num zero">no</td><td class="num many">99</td><td class="num">38</td><td class="num">200ms</td></tr>
+      <tr><td class="site">bruno-simon.com</td><td class="num zero">no</td><td class="num zero">no</td><td class="num zero">no</td><td class="num some">WebGL</td><td class="num">1</td><td class="num">23</td><td class="num">150ms</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Six findings</h2>
+  <p class="sub">The part that changes what you should build.</p>
+
+  <div class="finding">
+    <div class="n">1</div>
+    <div>
+      <h3>Nobody ships an animation library for this</h3>
+      <p>Not one of the six sites above loads GSAP, Lenis, or Framer Motion. The heaviest motion site, Bruno Simon, is a single WebGL bundle, not a CSS toolkit. The sites that feel best (emilkowal.ski, antfu.me) use <b>seven and two keyframes respectively</b>. <b>You do not need a dependency. You need better timing.</b></p>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="n">2</div>
+    <div>
+      <h3>Even Resend uses almost no scroll-linked animation</h3>
+      <p>I scrolled Resend through five positions and read every running animation. It had <b>46 animations running and zero of them were on a ScrollTimeline or ViewTimeline</b> — all 46 ran on the normal document clock. Sites reveal on scroll with an IntersectionObserver adding a class, then the animation plays once in real time. Scroll-linked CSS is for the accent, not the backbone.</p>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="n">3</div>
+    <div>
+      <h3>Scroll-driven CSS is finally safe to use</h3>
+      <p><span class="mono">animation-timeline: view()</span> and <span class="mono">scroll()</span> ship in Chrome 115+, Edge 115+, Firefox 132+, and Safari/iOS 18+ — roughly 84% of traffic as of mid-2026. The two rules that break it: <b>declare <span class="mono">animation-timeline</span> after any <span class="mono">animation</span> shorthand</b> (the shorthand silently resets it to <span class="mono">auto</span>), and <b>set <span class="mono">animation-duration: 1ms</span></b> or Firefox ignores the effect entirely.</p>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="n">4</div>
+    <div>
+      <h3>Tokens beat hand-tuned values</h3>
+      <p>Your <span class="mono">styles.css</span> has <span class="mono">0.2s ease</span> hardcoded in about twelve places and two different border/background pairs. The single highest-leverage change is not an animation at all — it is declaring five duration tokens and four easing tokens in <span class="mono">:root</span> and pointing everything at them. That is what makes motion feel deliberate rather than assembled.</p>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="n">5</div>
+    <div>
+      <h3>Small amplitude reads as expensive</h3>
+      <p>20px is the slide distance everyone ships, which is exactly why it reads as a template. <b>8&ndash;12px is the refined range.</b> Same for hover scale: keep it at or below 1.02 for buttons, 1.02&ndash;1.05 for cards. Also: entrances ease out, exits ease in and run at about 75% of the entrance duration, stagger sits between 30 and 80ms, and <span class="mono">linear</span> is only correct for marquees and scroll-linked progress.</p>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="n">6</div>
+    <div>
+      <h3>Restraint is the differentiator now</h3>
+      <p>The current taste consensus is that over-animating is the failure mode, not under-animating. The widely-repeated budget: a hero gets <b>at most three staggered entrances and one scroll-linked element</b>. Scroll-jacking, body parallax, and a spring on every hover are all listed as things to avoid. Your restrained editorial direction is already the harder half of the problem.</p>
+    </div>
+  </div>
+</section>
+
+<div class="warn">
+  <h3>One real bug to fix before you add any scroll-driven animation</h3>
+  <p>Your existing reduced-motion block in <span class="mono">styles.css:746</span> only forces durations to near zero. I tested that exact block against a scroll-driven animation with reduced motion emulated on: the element <b>kept moving</b>, travelling from 0 to 245px to 545px down the page. Scroll-driven animations ignore <span class="mono">animation-duration</span> entirely, because the scroll position <i>is</i> the clock — so your current block would silently fail to stop them for users who asked for less motion.</p>
+  <p>The fix is one extra line per scroll-driven system. This is already in <span class="mono">previews/motion.css</span>:</p>
+  <pre>@media (prefers-reduced-motion: reduce) {
+  .scroll-rail,
+  .timeline-draw,
+  .project-thumb {
+    animation: none !important;
+    <span class="cmt">/* required — the duration reset below cannot catch these */</span>
+    animation-timeline: none !important;
+    transform: none !important;
+  }
+}</pre>
+</div>
+
+<section>
+  <h2>Ranked for your specific site</h2>
+  <p class="sub">Ordered by value against effort, for a recruiter-facing portfolio that must load instantly and work on a phone. Each is toggleable on the live preview.</p>
+  <div class="rec">
+    <div class="rec-item">
+      <div class="rec-rank">1</div>
+      <div>
+        <h3>Motion tokens in <span class="mono">:root</span></h3>
+        <p>Five durations, four easings, three stagger intervals. Replaces the scattered <span class="mono">0.2s ease</span> values. Invisible on its own, but every other effect inherits its consistency from here.</p>
+        <div class="eff">~20 lines CSS &middot; no JS &middot; do this first</div>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-rank">2</div>
+      <div>
+        <h3>Staggered scroll reveal</h3>
+        <p>Fade plus 12px rise as each section enters, 55&ndash;70ms between siblings, plays once. The single biggest perceived-quality jump. One IntersectionObserver, and it degrades to fully visible content if the script never runs.</p>
+        <div class="eff">~25 lines JS + CSS &middot; biggest payoff</div>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-rank">3</div>
+      <div>
+        <h3>Hero name mask reveal</h3>
+        <p>Your name rises out from behind a clip, one word per line, 90ms apart. It makes the hero read as one composed opening alongside the typewriter you already have rather than two disconnected tricks.</p>
+        <div class="eff">~15 lines JS + ~20 lines CSS</div>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-rank">4</div>
+      <div>
+        <h3>Scroll progress rail</h3>
+        <p>A 2px accent line on the left edge filling as you scroll. The one scroll effect that costs zero JavaScript, and it pairs with the sticky section rail you already have. This is your one scroll-linked element.</p>
+        <div class="eff">~10 lines CSS &middot; needs the reduced-motion fix</div>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-rank">5</div>
+      <div>
+        <h3>Timeline line draw</h3>
+        <p>Your experience section's vertical line paints downward as the card arrives. Communicates sequence, which is the one thing motion in that section should actually do.</p>
+        <div class="eff">~12 lines CSS &middot; one markup change</div>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-rank">6</div>
+      <div>
+        <h3>Card cursor spotlight</h3>
+        <p>A soft accent glow following the pointer across project and contact cards. Gives the flat hairline cards some life without reintroducing the drop shadows the design avoids. Gate on <span class="mono">@media (hover: hover)</span> so it does not stick lit on touch.</p>
+        <div class="eff">~20 lines JS + ~15 lines CSS &middot; optional</div>
+      </div>
+    </div>
+    <div class="rec-item">
+      <div class="rec-rank">7</div>
+      <div>
+        <h3>Thumbnail settle on scroll</h3>
+        <p>Screenshots scale from 1.05 to 1.0 as a card passes. Nice, but it is a second and third scroll-linked element, which starts to work against the one-per-viewport budget. Take it or leave it.</p>
+        <div class="eff">~15 lines CSS &middot; cut on mobile</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>What I would not add</h2>
+  <ul class="plain">
+    <li><b>Scramble / decode typewriter.</b> The most recognisable AI-portfolio tell there is. Your existing typewriter already does the job and reads as more restrained. Keep yours.</li>
+    <li><b>Infinite tech marquee.</b> With four small skill groups and one timeline entry it reads as padding. Reconsider only if the skill list passes twenty items.</li>
+    <li><b>Conic gradient spin border.</b> A 2024&ndash;2025 staple that is now thoroughly expected, impossible to do tastefully at hairline weight on near-black, and it would put a second permanent loop next to your blinking caret.</li>
+    <li><b>Magnetic buttons and cursor followers.</b> Playful rather than professional, and they fight the scroll rail for the same attention.</li>
+    <li><b>Count-up number stats.</b> You have two years of experience and one role. A counter animating up to 2 undersells it.</li>
+    <li><b>Body parallax.</b> Actively harms scroll performance and is hostile to reduced-motion users.</li>
+  </ul>
+</section>
+
+<footer>
+  Previews only. Your <span class="mono">index.html</span>, <span class="mono">styles.css</span> and <span class="mono">script.js</span> are unmodified.
+</footer>
+
+</div>
+</body>
+</html>

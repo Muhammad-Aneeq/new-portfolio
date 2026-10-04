@@ -1,0 +1,185 @@
+- generic [active] [ref=f77e1]:
+  - banner [ref=f77e2]:
+    - navigation [ref=f77e3]:
+      - link "MH." [ref=f77e4] [cursor=pointer]:
+        - /url: "#hero"
+      - list [ref=f77e5]:
+        - listitem [ref=f77e6]:
+          - link "About" [ref=f77e7] [cursor=pointer]:
+            - /url: "#about"
+        - listitem [ref=f77e8]:
+          - link "Skills" [ref=f77e9] [cursor=pointer]:
+            - /url: "#skills"
+        - listitem [ref=f77e10]:
+          - link "Experience" [ref=f77e11] [cursor=pointer]:
+            - /url: "#experience"
+        - listitem [ref=f77e12]:
+          - link "Projects" [ref=f77e13] [cursor=pointer]:
+            - /url: "#projects"
+        - listitem [ref=f77e14]:
+          - link "Contact" [ref=f77e15] [cursor=pointer]:
+            - /url: "#contact"
+  - generic [ref=f77e17]:
+    - generic [ref=f77e18]:
+      - paragraph [ref=f77e19]: Open to work
+      - generic [ref=f77e21]:
+        - img "Muhammad Hammmad" [ref=f77e23]
+        - generic [ref=f77e24]:
+          - heading "Muhammad Hammmad" [level=1] [ref=f77e25]:
+            - generic [aria-hidden] [ref=f77e26]:
+              - generic [ref=f77e27]: Muhammad
+              - generic [ref=f77e29]: Hammmad
+          - paragraph [ref=f77e31]: Associate Software Engineer
+      - paragraph [ref=f77e32]: I build chatbots that actually answer. Two years shipping them for e-commerce, healthcare and FinTech teams.
+      - generic [ref=f77e33]:
+        - link "See the work" [ref=f77e34] [cursor=pointer]:
+          - /url: "#projects"
+        - link "Email me" [ref=f77e35] [cursor=pointer]:
+          - /url: "#contact"
+    - generic [ref=f77e36]:
+      - generic [ref=f77e37]:
+        - generic [ref=f77e38]: gpt-4o
+        - generic [ref=f77e39]: /
+        - generic [ref=f77e40]: 312 tokens
+        - generic [ref=f77e41]: /
+        - generic [ref=f77e42]: 1.4s
+      - generic [ref=f77e43]:
+        - paragraph [ref=f77e44]: Which stack would you use for a RAG support bot?
+        - paragraph [ref=f77e45]
+  - generic [ref=f77e48]:
+    - generic [ref=f77e49]:
+      - heading "About" [level=2] [ref=f77e50]
+      - paragraph [ref=f77e51]: Who you would be working with.
+    - generic [ref=f77e52]:
+      - generic [ref=f77e53]:
+        - paragraph [ref=f77e54]:
+          - text: I'm
+          - strong [ref=f77e55]: Muhammad Hammmad
+          - text: ", an Associate Software Engineer with"
+          - strong [ref=f77e56]: 2 years of professional experience
+          - text: in software engineering and full stack development.
+        - paragraph [ref=f77e57]:
+          - text: I specialize in
+          - strong [ref=f77e58]: Generative AI and chatbot development
+          - text: ", building intelligent applications with technologies like OpenAI GPT, LangChain, and Dialogflow, paired with modern web stacks like React, Next.js, and Node.js. I've worked across e-commerce, healthcare, FinTech, education, SaaS, and enterprise software, collaborating with cross-functional teams to design, build, and maintain reliable products."
+        - paragraph [ref=f77e59]:
+          - text: My educational background is
+          - strong [ref=f77e60]: Intermediate
+          - text: ", and I've complemented it with continuous self-learning, hands-on projects, and on-the-job experience to grow as an engineer every day."
+      - generic [ref=f77e61]:
+        - generic [ref=f77e62]: ✓ 2 Years Experience
+        - generic [ref=f77e63]: ✓ Full Stack Development
+        - generic [ref=f77e64]: ✓ Generative AI & Chatbots
+        - generic [ref=f77e65]: ✓ Team Player
+        - generic [ref=f77e66]: ✓ Quick Learner
+        - generic [ref=f77e67]: ✓ Problem Solver
+  - generic [ref=f77e70]:
+    - generic [ref=f77e71]:
+      - heading "Skills" [level=2] [ref=f77e72]
+      - paragraph [ref=f77e73]: Grouped by what they are, not by how new they are.
+    - generic [ref=f77e75]:
+      - generic [ref=f77e76]:
+        - paragraph [ref=f77e77]: Languages
+        - list [ref=f77e78]:
+          - listitem [ref=f77e79]: TypeScript
+          - listitem [ref=f77e80]: JavaScript
+          - listitem [ref=f77e81]: Python
+          - listitem [ref=f77e82]: SQL
+      - generic [ref=f77e83]:
+        - paragraph [ref=f77e84]: Frontend
+        - list [ref=f77e85]:
+          - listitem [ref=f77e86]: React
+          - listitem [ref=f77e87]: Next.js
+      - generic [ref=f77e88]:
+        - paragraph [ref=f77e89]: AI & backend
+        - list [ref=f77e90]:
+          - listitem [ref=f77e91]: OpenAI GPT
+          - listitem [ref=f77e92]: LangChain
+          - listitem [ref=f77e93]: Dialogflow
+          - listitem [ref=f77e94]: Node.js
+          - listitem [ref=f77e95]: REST APIs
+      - generic [ref=f77e96]:
+        - paragraph [ref=f77e97]: Tooling
+        - list [ref=f77e98]:
+          - listitem [ref=f77e99]: Git & GitHub
+  - generic [ref=f77e102]:
+    - generic [ref=f77e103]:
+      - heading "Experience" [level=2] [ref=f77e104]
+      - paragraph [ref=f77e105]: Two years, one team, a lot of shipping.
+    - generic [ref=f77e110]:
+      - heading "Associate Software Engineer" [level=3] [ref=f77e111]
+      - paragraph [ref=f77e112]: Full-time · 2 Years
+      - generic [ref=f77e113]:
+        - paragraph [ref=f77e114]:
+          - text: Developed and maintained full stack features across multiple projects while specializing in
+          - strong [ref=f77e115]: Generative AI and chatbot solutions
+          - text: . Built intelligent conversational AI using OpenAI GPT, Dialogflow, and LangChain, and shipped web applications with React, Next.js, and Node.js for clients in e-commerce, healthcare, FinTech, SaaS, and enterprise.
+        - paragraph [ref=f77e116]: Worked in agile teams, wrote clean code, fixed bugs, performed code reviews, and collaborated with designers and senior engineers to deliver quality products on schedule.
+  - generic [ref=f77e119]:
+    - generic [ref=f77e120]:
+      - heading "Projects" [level=2] [ref=f77e121]
+      - paragraph [ref=f77e122]: Three things I built end to end.
+    - generic [ref=f77e124]:
+      - article [ref=f77e125]:
+        - generic [ref=f77e126]: Conversational AI
+        - generic [ref=f77e128]:
+          - heading "AI Customer Support Chatbot" [level=3] [ref=f77e129]
+          - paragraph [ref=f77e130]: An intelligent customer service chatbot built with Dialogflow and OpenAI GPT to handle support queries for e-commerce and SaaS clients.
+          - generic [ref=f77e131]:
+            - generic [ref=f77e132]: OpenAI GPT
+            - generic [ref=f77e133]: Dialogflow
+            - generic [ref=f77e134]: Node.js
+          - generic [ref=f77e135]:
+            - link "Live demo" [ref=f77e136] [cursor=pointer]:
+              - /url: "#"
+            - link "Source" [ref=f77e137] [cursor=pointer]:
+              - /url: "#"
+      - article [ref=f77e138]:
+        - generic [ref=f77e139]: Full stack
+        - generic [ref=f77e141]:
+          - heading "E-Commerce Platform" [level=3] [ref=f77e142]
+          - paragraph [ref=f77e143]: A full-featured e-commerce web app with product catalog, cart, and payments, built on React and Node.js with a REST API backend.
+          - generic [ref=f77e144]:
+            - generic [ref=f77e145]: React
+            - generic [ref=f77e146]: Node.js
+            - generic [ref=f77e147]: REST API
+          - generic [ref=f77e148]:
+            - link "Live demo" [ref=f77e149] [cursor=pointer]:
+              - /url: "#"
+            - link "Source" [ref=f77e150] [cursor=pointer]:
+              - /url: "#"
+      - article [ref=f77e151]:
+        - generic [ref=f77e152]: LLM application
+        - generic [ref=f77e154]:
+          - heading "Generative AI Content App" [level=3] [ref=f77e155]
+          - paragraph [ref=f77e156]: An AI-powered content generation application using LangChain and OpenAI to produce text, summaries, and answers for enterprise users.
+          - generic [ref=f77e157]:
+            - generic [ref=f77e158]: Python
+            - generic [ref=f77e159]: LangChain
+            - generic [ref=f77e160]: OpenAI
+          - generic [ref=f77e161]:
+            - link "Live demo" [ref=f77e162] [cursor=pointer]:
+              - /url: "#"
+            - link "Source" [ref=f77e163] [cursor=pointer]:
+              - /url: "#"
+  - generic [ref=f77e166]:
+    - generic [ref=f77e167]:
+      - heading "Contact" [level=2] [ref=f77e168]
+      - paragraph [ref=f77e169]: The fastest way to reach me.
+    - generic [ref=f77e170]:
+      - paragraph [ref=f77e171]: Have a project in mind or want to collaborate? Send a note and I'll reply.
+      - generic [ref=f77e172]:
+        - link "Email your.email@example.com" [ref=f77e173] [cursor=pointer]:
+          - /url: mailto:your.email@example.com
+          - generic [ref=f77e174]: Email
+          - generic [ref=f77e175]: your.email@example.com
+        - link "GitHub github.com/yourusername" [ref=f77e176] [cursor=pointer]:
+          - /url: https://github.com/yourusername
+          - generic [ref=f77e177]: GitHub
+          - generic [ref=f77e178]: github.com/yourusername
+        - link "LinkedIn linkedin.com/in/yourusername" [ref=f77e179] [cursor=pointer]:
+          - /url: https://linkedin.com/in/yourusername
+          - generic [ref=f77e180]: LinkedIn
+          - generic [ref=f77e181]: linkedin.com/in/yourusername
+  - contentinfo [ref=f77e182]:
+    - paragraph [ref=f77e184]: © 2026 Muhammad Hammmad

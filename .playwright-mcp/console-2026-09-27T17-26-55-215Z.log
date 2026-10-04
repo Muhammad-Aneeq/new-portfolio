@@ -1,0 +1,2 @@
+[    2746ms] [WARNING] Datadog Browser SDK: Tag version:dpl_8MhsKDJhGGMXAX2JACTZgtsvGYco doesn't meet tag requirements and will be sanitized. More details: https://docs.datadoghq.com/getting_started/tagging/#defining-tags @ https://resend.com/_next/static/immutable/chunks/1rr0v84jfgkkt.js:3
+[    3925ms] [WARNING] updating from  115 to  122 @ https://resend.com/_next/static/immutable/chunks/1rr0v84jfgkkt.js:3
